@@ -14,9 +14,9 @@ app.use(express.cookieParser('dishEsSec'));
 // 使用 avos-express-cookie-session 记录登录信息到 cookie
 app.use(avosExpressCookieSession({ cookie: { maxAge: 3600000 }, fetchUser: true}));
 
-// 使用 Express 路由 API 服务 /hello 的 HTTP GET 请求
-app.get('/hello', function(req, res) {
-  res.render('hello', { message: 'Congrats, you just set up your app!' });
+// 使用 Express 路由 API 服务 / 的 HTTP GET 请求
+app.get('/', function(req, res) {
+  res.render('home', { message: 'Congrats, you just set up your app!' });
 });
 
 // 最后，必须有这行代码来使 express 响应 HTTP 请求

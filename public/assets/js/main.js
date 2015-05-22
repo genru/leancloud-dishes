@@ -8,6 +8,9 @@
 				if ( $('body').hasClass('loadpage') )
 					$('body').removeClass('loadpage');
 			});
+			var segment = '/'+window.location.href.split('/')[3];
+			$('#navbar .nav li:has([href="'+segment+'"])').addClass('active')
+			// console.info($('#navbar .nav li:has([href="'+segment+'"])').html());
 			
 			// Dribbble
 			// $.jribbble.getShotsByPlayerId('MunFactory', function (work) {

@@ -1,5 +1,6 @@
 'use strict';
 
+var loginError = null;
 
 /**
  * Auth callback
@@ -9,7 +10,7 @@ exports.signup = function(req, res) {
 };
 
 exports.signin = function(req,res) {
-    res.render('signin', { "layout":false });
+    res.render('signin', { "layout":false, "error":loginError });
 };
 
 exports.auth = function(req, res) {
@@ -17,10 +18,16 @@ exports.auth = function(req, res) {
         success: function(user) {
             // Do stuff after successful login.
             res.redirect('/');
+            loginError = null;
         },
         error: function(user, error) {
             // The login failed. Check error to see why.
-            console.error('login failed '+error);
+            console.error('login failed '+JSON.stringify(error));
+            // override system error details, display friendly message
+            if(error.code===-1)
+                error.message = 'Server fail';
+            loginError = error;
+            res.redirect('/signin');
         }
     });
 };

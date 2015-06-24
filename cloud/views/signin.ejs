@@ -13,14 +13,20 @@
 </head>
 <body>
 <div class="app app-header-fixed">
-  
 
-<div class="container">  
+
+<div class="container">
   <div class="center-block w-xl w-auto-xs m-b-lg">
     <div class="text-2x m-v-lg text-primary"><i class="glyphicon glyphicon-th-large text-xl"></i> HeyMetro</div>
     <div class="m-b text-sm">
       Sign in with your HeyMetro Account
     </div>
+    <% if (error) { %>
+    <div class="alert alert-danger alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      Oops! <%=error.message%>
+    </div>
+    <% } %>
     <form name="form" action="/signin", method="POST">
       <div class="form-group m-b-xs">
         <label class="hide">Email</label>
@@ -29,8 +35,8 @@
       <div class="form-group m-b-xs">
         <label class="hide">Password</label>
         <input type="password" placeholder="Password" class="form-control" ng-model="user.password" name="password" required>
-      </div>      
-      <div class="checkbox no-margin">        
+      </div>
+      <div class="checkbox no-margin">
         <label class="ui-checks">
           <input type="checkbox"><i></i> Keep me signed in
         </label>
@@ -48,7 +54,11 @@
   <%include footer%>
 
 <script src="scripts/app.min.js"></script>
-
+<script>
+  $(function(){
+    $('.alert').show();
+  });
+</script>
 </body>
 
 <!-- Mirrored from heyflat.com/themes/heymetro/html/signin.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 19 May 2015 14:06:28 GMT -->

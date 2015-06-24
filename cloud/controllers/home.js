@@ -6,9 +6,14 @@
  */
 exports.get = function(req, res) {
 	var currentUser = AV.User.current();
-	// console.info(currentUser.toJSON());
+    var param = {};
+    param.title = 'Dashboard';
+    param.message = 'Congrats, you just set up your app!';
+    param.user = null;
+    param.navmenu = require('cloud/controllers/navmenu').DishMenu;
+
 	if(currentUser)
-	    res.render('home', { title:'Order', message: 'Congrats, you just set up your app!', user: currentUser.toJSON() });
-	else
-	    res.render('home', { title:'Order', message: 'Congrats, you just set up your app!', user:null });
+	    param.user = currentUser.toJSON();
+
+    res.render('home', param);
 };

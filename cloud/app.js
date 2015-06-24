@@ -7,6 +7,11 @@ var expressLayouts = require('express-ejs-layouts');
 var avosExpressCookieSession = require('avos-express-cookie-session');
 var home = require('cloud/controllers/home');
 var user = require('cloud/controllers/user');
+var order = require('cloud/controllers/order');
+var dish = require('cloud/controllers/dish');
+var vip = require('cloud/controllers/vip');
+var settings = require('cloud/controllers/settings');
+var auth = require('cloud/auth');
 
 // App 全局配置
 app.set('views','cloud/views');   // 设置模板目录
@@ -19,7 +24,7 @@ app.use(express.cookieParser('dishEsSec'));
 app.use(avosExpressCookieSession({ cookie: { maxAge: 3600000 }, fetchUser: true}));
 
 // 使用 Express 路由 API 服务 / 的 HTTP GET 请求
-app.get('/',home.get);
+app.get('/',auth.requiresLogin,home.get);
 
 app.get('/contact', function(req, res) {
   res.render('home', { message: 'contact here, you just set up your app!' });
@@ -33,6 +38,12 @@ app.get('/signout', user.signout);
 app.get('/signup', user.signup)
    .post('/signup', user.create)
    .get('user/profile', user.profile);
+
+// app.route('/order').get(auth.requiresLogin, order.get);
+app.get('/order', auth.requiresLogin, order.get);
+app.get('/dishes', auth.requiresLogin, dish.get);
+app.get('/vip', auth.requiresLogin, vip.get);
+app.get('/settings', auth.requiresLogin, settings.get);
 
 // 最后，必须有这行代码来使 express 响应 HTTP 请求
 app.listen();

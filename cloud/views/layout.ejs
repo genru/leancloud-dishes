@@ -13,7 +13,7 @@
 </head>
 <body>
 <div class="app app-header-fixed">
-  
+
   <!-- header -->
   <header id="header" class="app-header navbar" role="menu">
           <!-- navbar header -->
@@ -29,7 +29,7 @@
           <!-- <i class="pull-right ti-arrow-circle-down text-sm m-v-xs m-l-xs"></i> -->
           <i class="glyphicon glyphicon-th-large text-md"></i>
           <img src="images/logo.png" alt="." class="hide">
-          <span class="hidden-folded m-l-xs">HeyMetro<sup class="text-xs font-thin">1.3</sup></span>
+          <span class="hidden-folded m-l-xs">DISHES<sup class="text-xs font-thin">0.6</sup></span>
         </a>
         <!-- / brand -->
       </div>
@@ -40,25 +40,31 @@
         <!-- nav -->
         <ul class="nav navbar-nav navbar-left">
           <li>
-            <a href="index-2.html">
+            <a href="/">
               Dashboard
             </a>
           </li>
           <li>
-            <a href="email.html">
-              Email
+            <a href="/order">
+              全部订单
             </a>
           </li>
           <li>
-            <a href="ui.arrow.html">
-              UI Kits
+            <a href="/dishes">
+              菜品
             </a>
           </li>
           <li>
-            <a href="page.profile.html">
-              Pages
+            <a href="/vip">
+              大客户
             </a>
           </li>
+          <li>
+            <a href="/settings">
+              设置
+            </a>
+          </li>
+
         </ul>
         <!-- / nav -->
 
@@ -73,7 +79,7 @@
               <span class="input-group-btn">
                 <button type="submit" class="btn btn-sm no-bg btn-icon no-shadow no-padder"><i class="ti-search"></i></button>
               </span>
-              <input type="text" ng-model="selected" typeahead="state for state in states | filter:$viewValue | limitTo:8" class="form-control input-sm no-bg no-border" placeholder="Search...">              
+              <input type="text" ng-model="selected" typeahead="state for state in states | filter:$viewValue | limitTo:8" class="form-control input-sm no-bg no-border" placeholder="Search...">
             </div>
           </div>
         </form>
@@ -91,63 +97,26 @@
     <nav ui-nav>
   <ul class="nav">
     <li class="nav-header h4 m-v-sm">
-      Pages
+      <%=navmenu.header%>
     </li>
+    <%navmenu.menuItem.forEach(function(item){%>
     <li>
-      <a href="page.profile.html">
-        <span>Profile</span>
+      <a href="<%= item.url%>">
+        <span><%=item.title%></span>
       </a>
     </li>
-    <li>
-      <a href="page.settings.html">
-        <span>Settings</span>
-      </a>
-    </li>
-    <li>
-      <a href="page.blank.html">
-        <span>Blank</span>
-      </a>
-    </li>
-    <li>
-      <a href="signin.html">
-        <span>Sign In</span>
-      </a>
-    </li>
-    <li>
-      <a href="signup.html">
-        <span>Sign Up</span>
-      </a>
-    </li>
-    <li>
-      <a href="forgot-password.html">
-        <span>Forgot Password</span>
-      </a>
-    </li>
-    <li>
-      <a href="lockme.html">
-        <span>Lockme Screen</span>
-      </a>
-    </li>
-    <li>
-      <a href="404.html">
-        <span>Error 404</span>
-      </a>
-    </li>
-    <li>
-      <a href="505.html">
-        <span>Error 505</span>
-      </a>
-    </li>
+    <%})%>
+
   </ul>
 </nav>
   </div>
 </div>
   </aside>
   <!-- / aside -->
-  
+
   <!-- content -->
   <div id="content" class="app-content" role="main">
-    
+
 
 <div class="p-h-md p-v bg-white box-shadow pos-rlt">
   <h3 class="no-margin"><%= title%></h3>

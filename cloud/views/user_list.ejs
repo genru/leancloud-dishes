@@ -1,0 +1,32 @@
+<div class='panel panel-default'>
+    <div class="panel-heading">
+      <div class='row'>
+        <div class='col-md-12'>
+          <span>Basic</span>
+          <a href="#" class='btn-sm btn-addon btn-primary pull-right'><i class='fa fa-plus'></i>添加</a>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Username</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%people.forEach(function(i){ var item = i.toJSON();%>
+        <tr>
+          <td><%=item.objectId%></td>
+          <td><%=item.email%></td>
+          <td><%=item.username%></td>
+          <td><%=item.mobilePhoneVerified%></td>
+        </tr>
+        <%})%>
+      </tbody>
+    </table>
+    </div>
+</div>
